@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AN. | Portfolio</title>
+    <meta
+      name="description"
+      content="Anela Nqenqa, graduate software developer creating accessible, responsive digital experiences."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div id="app">
+      <header class="topbar">
+        <a href="#home" class="brand" aria-label="Go to home page">AN.</a>
+        <nav class="nav" aria-label="Main navigation">
+          <a v-for="item in navItems" :key="item" :href="'#' + item.toLowerCase()" class="nav-item">{{ item }}</a>
+        </nav>
+        <a class="cta-button" href="#contact">Get in touch</a>
+      </header>
+
+      <main>
+        <section id="home" class="hero section-shell">
+          <div class="hero-copy">
+            <p class="intro-line">Hi, I’m Anela Nqenqa.</p>
+            <h1>
+              I turn ideas into
+              <span>real websites.</span>
+            </h1>
+            <p class="lead">
+              A Cape Town-based graduate software developer and LC Studio intern creating
+              responsive, accessible, and thoughtful digital experiences.
+            </p>
+            <div class="cta-row">
+              <a class="primary-btn" href="#projects">View my work</a>
+              <div class="mini-note mini-inline">
+                <span>Currently</span>
+                <p>I’m an intern at LC Studio, building, learning, and ready for what’s next.</p>
+              </div>
+              <a class="secondary-btn" href="#contact">Contact me</a>
+            </div>
+          </div>
+          <div class="hero-visual">
+            <div class="avatar-card">
+              <img class="portrait-art" src="assets/anela-portrait.png" alt="Portrait of Anela Nqenqa" />
+            </div>
+          </div>
+        </section>
+
+        <section id="about" class="about section-shell alt-bg">
+          <div class="section-heading">
+            <div class="eyebrow">About Me</div>
+            <div class="massive-text">
+              <span>Graduate.</span>
+              <span>Creator.</span>
+              <span class="accent">Problem-solver.</span>
+            </div>
+          </div>
+
+          <div class="about-grid">
+            <div class="about-text-block">
+              <p>
+                I’m a graduate Software Developer and an Intern at LC Studio, with a strong
+                foundation in front-end development, back-end concepts, databases, and professional practice.
+              </p>
+            </div>
+
+            <div class="about-copy-grid">
+              <p>
+                What started as an interest in creative design grew into a love for building complete,
+                functional websites. I care about clean structure, accessible experiences, and interfaces
+                that feel easy to use.
+              </p>
+              <p>
+                I’m gaining practical experience at LC Studio and continuing to grow as a developer.
+                I enjoy collaborating with a team and turning real problems into useful products.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section id="skills" class="skills section-shell pink-panel">
+          <div class="skills-header">
+            <div class="eyebrow">Skills &amp; Tools</div>
+            <h2>What I work with.</h2>
+          </div>
+
+          <div class="skill-grid">
+            <article v-for="(skill, index) in skills" :key="skill.name" class="skill-card">
+              <div class="skill-index">{{ index + 1 < 10 ? '0' + (index + 1) : index + 1 }}</div>
+              <div class="skill-icon" aria-hidden="true">
+                <svg v-if="skill.icon === 'html'" viewBox="0 0 48 48" focusable="false">
+                  <path d="M9 5h30l-3 34-12 4-12-4L9 5Z" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round" />
+                  <path d="M16 15h18l-.5 5H17l.5 5h15l-1 10-7.5 2.5-7.5-2.5-.5-5" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round" />
+                </svg>
+                <svg v-else-if="skill.icon === 'css'" viewBox="0 0 48 48" focusable="false">
+                  <path d="M9 5h30l-3 34-12 4-12-4L9 5Z" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round" />
+                  <path d="M16 15h18l-.5 5H17l.5 5h15l-1 10-7.5 2.5-7.5-2.5-.5-5" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round" />
+                </svg>
+                <svg v-else-if="skill.icon === 'javascript'" viewBox="0 0 48 48" focusable="false">
+                  <rect x="5" y="5" width="38" height="38" rx="8" fill="none" stroke="currentColor" stroke-width="3" />
+                  <path d="M27 15v17c0 5-3 7-8 5M33 32c1 3 7 4 8 0 1-3-8-4-7-9 1-4 6-4 9-2" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" />
+                </svg>
+                <svg v-else-if="skill.icon === 'bootstrap'" viewBox="0 0 48 48" focusable="false">
+                  <rect x="5" y="5" width="38" height="38" rx="9" fill="none" stroke="currentColor" stroke-width="3" />
+                  <path d="M18 13h8c8 0 9 10 1 11 9 1 8 12-1 12h-8V13Zm1 2v8h6c6 0 5-8 0-8h-6Zm0 10v9h6c7 0 7-9 0-9h-6Z" fill="currentColor" />
+                </svg>
+                <svg v-else-if="skill.icon === 'git'" viewBox="0 0 48 48" focusable="false">
+                  <path d="m24 5 19 19-19 19L5 24 24 5Z" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round" />
+                  <path d="M18 17v14m0-7h9c4 0 5-2 5-6v-1m-14 7c5 0 9 3 9 8" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" />
+                  <circle cx="18" cy="16" r="2" fill="currentColor" /><circle cx="32" cy="16" r="2" fill="currentColor" /><circle cx="27" cy="34" r="2" fill="currentColor" />
+                </svg>
+                <svg v-else viewBox="0 0 48 48" focusable="false">
+                  <ellipse cx="24" cy="11" rx="16" ry="6" fill="none" stroke="currentColor" stroke-width="3" />
+                  <path d="M8 11v26c0 3 7 6 16 6s16-3 16-6V11M8 20c0 3 7 6 16 6s16-3 16-6M8 29c0 3 7 6 16 6s16-3 16-6" fill="none" stroke="currentColor" stroke-width="3" />
+                </svg>
+              </div>
+              <h3>{{ skill.name }}</h3>
+              <p>{{ skill.description }}</p>
+            </article>
+          </div>
+        </section>
+
+        <section id="projects" class="projects section-shell">
+          <div class="projects-header">
+            <h2>Projects &amp; practice.</h2>
+          </div>
+
+          <article class="project-showcase" aria-roledescription="carousel" aria-label="Selected portfolio projects">
+            <div class="project-image-frame">
+              <Transition name="slide-fade" mode="out-in">
+                <a :key="activeProject.image" class="project-screenshot-link" :href="activeProject.url" target="_blank" rel="noopener noreferrer" :aria-label="'Visit ' + activeProject.title + ' live project'">
+                  <img class="project-screenshot" :src="activeProject.image" :alt="activeProject.title + ' project screenshot'" />
+                </a>
+              </Transition>
+              <button class="slide-control slide-previous" type="button" aria-label="Previous project" @click="previousProject">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6" /></svg>
+              </button>
+              <button class="slide-control slide-next" type="button" aria-label="Next project" @click="nextProject">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6" /></svg>
+              </button>
+              <div class="slide-dots" aria-label="Choose a project">
+                <button v-for="(project, index) in projects" :key="project.title" type="button" :class="{ 'is-active': index === projectIndex }" :aria-label="'Show ' + project.title" :aria-current="index === projectIndex ? 'true' : null" @click="goToProject(index)"></button>
+              </div>
+            </div>
+          </article>
+          <a href="https://github.com/nqenqaanela-beep" class="view-github" target="_blank" rel="noopener noreferrer">Explore my GitHub projects ↗</a>
+        </section>
+
+        <section id="credentials" class="credentials section-shell purple-panel">
+          <div class="eyebrow">Education &amp; Credentials</div>
+          <h2>Learning backed by real work.</h2>
+
+          <div class="credential-grid">
+            <article class="credential-card light-card">
+              <div class="credential-pill">Graduate programme</div>
+              <div class="credential-body">
+                <div class="credential-year">2026</div>
+                <h3>YouthCode Software Development Project</h3>
+                <p>
+                  Completed the YouthCode Software Development Project, covering ICT, front-end
+                  development, databases, back-end development, e-commerce, and professional development.
+                </p>
+                <button type="button" class="credential-link" @click="openCertificate('assets/certificates/youthcode-project.jpg', 'YouthCode Software Development Project certificate')">View certificate</button>
+              </div>
+            </article>
+
+            <article class="credential-card light-card cisco-card">
+              <div class="credential-pill">Cisco · Data foundations</div>
+              <div class="credential-body">
+                <div class="mini-tag">Data foundations</div>
+                <h3>Fundamentals of Data Science</h3>
+                <button type="button" class="credential-link" @click="openCertificate('assets/certificates/fundamentals-of-data-science.pdf', 'Fundamentals of Data Science certificate')">View certificate</button>
+              </div>
+            </article>
+
+            <article class="credential-card light-card cisco-card">
+              <div class="credential-pill">Cisco · Digital security</div>
+              <div class="credential-body">
+                <div class="mini-tag">Digital security</div>
+                <h3>Networking Basics &amp; Cybersecurity</h3>
+                <button type="button" class="credential-link" @click="openCertificate('assets/certificates/networking-and-cybersecurity.pdf', 'Networking Basics and Cybersecurity certificate')">View certificate</button>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section id="contact" class="contact section-shell contact-shell">
+          <div class="contact-copy">
+            <div class="eyebrow">Get in touch</div>
+            <h2>Let’s build something meaningful.</h2>
+            <p>
+              I’m an intern at LC Studio and open to junior software development opportunities and
+              collaborative projects. Use any link below to reach me or explore my work.
+            </p>
+            <div class="contact-list">
+              <a class="contact-item" href="mailto:nqenqaanela@gmail.com"><span>Email</span><span class="contact-value">nqenqaanela@gmail.com</span><span class="contact-action">Send email <span aria-hidden="true">↗</span></span></a>
+              <a class="contact-item" href="https://www.linkedin.com/in/anela-nqenqa-393800413" target="_blank" rel="noopener noreferrer"><span>LinkedIn</span><span class="contact-value">anela-nqenqa-393800413</span><span class="contact-action">View profile <span aria-hidden="true">↗</span></span></a>
+              <a class="contact-item" href="https://github.com/nqenqaanela-beep" target="_blank" rel="noopener noreferrer"><span>GitHub</span><span class="contact-value">nqenqaanela-beep</span><span class="contact-action">View projects <span aria-hidden="true">↗</span></span></a>
+              <div class="contact-item"><span>Location</span><span class="contact-value">Cape Town, South Africa</span><span></span></div>
+            </div>
+          </div>
+
+          <div class="contact-form-card">
+            <form @submit.prevent="submitForm">
+              <div class="form-row">
+                <label for="contact-name">Your name</label>
+                <input id="contact-name" type="text" v-model="form.name" placeholder="Your name" autocomplete="name" required />
+              </div>
+              <div class="form-row two-col">
+                <div>
+                  <label for="contact-email">Your email</label>
+                  <input id="contact-email" type="email" v-model="form.email" placeholder="you@example.com" autocomplete="email" required />
+                </div>
+                <div>
+                  <label for="contact-subject">Subject</label>
+                  <input id="contact-subject" type="text" v-model="form.subject" placeholder="Project enquiry" required />
+                </div>
+              </div>
+              <div class="form-row">
+                <label for="contact-message">Your message</label>
+                <textarea id="contact-message" v-model="form.message" placeholder="Tell me about the role or project..." required></textarea>
+              </div>
+              <button type="submit" class="submit-btn">Send message</button>
+            </form>
+          </div>
+        </section>
+      </main>
+
+      <footer class="site-footer">
+        <div class="footer-line"></div>
+        <div class="footer-content">
+          <a class="footer-brand" href="#home">AN.</a>
+          <span class="footer-quote">© 2026 Anela Nqenqa. “Every line of code leads here” — Future me.</span>
+          <a class="footer-top-link" href="#home">Back to top ↑</a>
+        </div>
+      </footer>
+
+      <dialog ref="certificateDialog" class="certificate-dialog" aria-labelledby="certificate-dialog-title" @click.self="$refs.certificateDialog.close()" @close="activeCertificate = null">
+        <div class="certificate-dialog-header">
+          <h2 id="certificate-dialog-title">{{ activeCertificate ? activeCertificate.title : 'Certificate' }}</h2>
+          <button class="dialog-close" type="button" aria-label="Close certificate" @click="$refs.certificateDialog.close()">Close <span aria-hidden="true">×</span></button>
+        </div>
+        <iframe v-if="activeCertificate && activeCertificate.path.endsWith('.pdf')" class="certificate-viewer" :src="activeCertificate.path" :title="activeCertificate.title"></iframe>
+        <img v-else-if="activeCertificate" class="certificate-viewer" :src="activeCertificate.path" :alt="activeCertificate.title" />
+      </dialog>
+    </div>
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
