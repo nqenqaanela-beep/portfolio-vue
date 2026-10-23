@@ -1,5 +1,7 @@
 const { createApp } = Vue;
 
+const WEB3FORMS_ACCESS_KEY = '69de037d-1dd6-470d-93f0-062e5f50a3ef';
+
 createApp({
   data() {
     return {
@@ -15,18 +17,15 @@ createApp({
       projects: [
         {
           title: 'Personal portfolio',
-          image: 'assets/projects/portfolio-project.jpeg',
-          url: 'https://nqenqaanela-beep.github.io/'
+          image: 'assets/projects/portfolio-project.jpeg'
         },
         {
           title: 'GigaBridge',
-          image: 'assets/projects/gigabridge-project.jpeg',
-          url: 'https://leratoyapi.github.io/'
+          image: 'assets/projects/gigabridge-project.jpeg'
         },
         {
           title: 'ModernTech HR directory',
-          image: 'assets/projects/moderntech-project.jpeg',
-          url: 'https://modern-tech-solutions.netlify.app/'
+          image: 'assets/projects/moderntech-project.jpeg'
         }
       ],
       projectIndex: 0,
@@ -37,7 +36,9 @@ createApp({
         email: '',
         subject: '',
         message: ''
-      }
+      },
+      formStatus: '',
+      isSubmitting: false
     };
   },
   computed: {
@@ -78,11 +79,44 @@ createApp({
       this.activeCertificate = { path, title };
       this.$nextTick(() => this.$refs.certificateDialog.showModal());
     },
-    submitForm() {
+    async submitForm() {
+      if (this.isSubmitting) return;
+
       const { name, email, subject, message } = this.form;
-      const body = `Name: ${name}\nEmail: ${email}\n\n${message}`;
-      const mailto = `mailto:nqenqaanela@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-      window.location.href = mailto;
+      this.isSubmitting = true;
+      this.formStatus = '';
+
+      try {
+        const response = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Accept: 'application/json'
+          },
+          body: JSON.stringify({
+            access_key: WEB3FORMS_ACCESS_KEY,
+            name,
+            email,
+            subject,
+            message
+          })
+        });
+        const result = await response.json();
+
+        if (!response.ok || !result.success) {
+          throw new Error(result.message || `Request failed with status ${response.status}.`);
+        }
+
+        this.formStatus = 'Thanks! Your message has been sent.';
+        this.form = { name: '', email: '', subject: '', message: '' };
+      } catch (error) {
+        console.error('Contact form submission failed.', error);
+        this.formStatus = error instanceof Error
+          ? `Unable to send your message: ${error.message}`
+          : 'Unable to send your message. Please try again later.';
+      } finally {
+        this.isSubmitting = false;
+      }
     }
   }
 }).mount('#app');
