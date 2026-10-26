@@ -11,7 +11,6 @@
   --text-dark: #2d182a;
   --white: #f9f5f2;
   --border: rgba(52, 31, 48, 0.16);
-  --green: #a7b780;
   --pink-soft: #f2bfd8;
   --shadow: rgba(27, 13, 25, 0.18);
 }
@@ -138,6 +137,7 @@ section[id] {
 }
 
 .hero {
+  margin-top: 1rem;
   display: grid;
   grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
   gap: 0;
@@ -214,8 +214,8 @@ section[id] {
 }
 
 .primary-btn {
-  background: linear-gradient(135deg, #c4d79a 0%, #a7c779 100%);
-  color: #17230f;
+  background: linear-gradient(135deg, #f2bfd8 0%, #ef8fd0 100%);
+  color: var(--deep-plum);
 }
 
 .secondary-btn {
@@ -267,7 +267,7 @@ section[id] {
 .mini-note {
   width: 72%;
   margin-top: 1.3rem;
-  background: rgba(167, 183, 128, 0.9);
+  background: var(--pink-soft);
   padding: 1.2rem 1.4rem;
   border-radius: 1.2rem;
   color: #1f1720;
@@ -531,7 +531,7 @@ section[id] {
 }
 
 .slide-control:hover {
-  background: #c4d79a;
+  background: var(--pink-soft);
 }
 
 .slide-control svg {
@@ -648,6 +648,8 @@ section[id] {
 }
 
 .credential-card {
+  display: flex;
+  flex-direction: column;
   border-radius: 1.5rem;
   padding: 1.5rem;
 }
@@ -669,7 +671,7 @@ section[id] {
   letter-spacing: 0.12em;
 }
 
-.credential-year {
+.credential-meta {
   margin-top: 1.5rem;
   font-size: 0.7rem;
   letter-spacing: 0.14em;
@@ -684,6 +686,13 @@ section[id] {
   letter-spacing: -0.06em;
 }
 
+.credential-body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
 .credential-body p {
   margin: 0;
   font-size: 1rem;
@@ -693,8 +702,8 @@ section[id] {
 
 .credential-link {
   display: inline-block;
-  margin-top: 1.2rem;
-  padding: 0;
+  margin-top: auto;
+  padding-top: 1.2rem;
   border: 0;
   background: transparent;
   font: inherit;
@@ -702,29 +711,11 @@ section[id] {
   letter-spacing: 0.12em;
   font-size: 0.7rem;
   font-weight: 800;
-  color: #245b2a;
+  color: var(--deep-magenta);
   text-decoration: underline;
   text-decoration-thickness: 1px;
   text-underline-offset: 0.2em;
   cursor: pointer;
-}
-
-.mini-tag {
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  font-size: 0.66rem;
-  color: rgba(48, 25, 35, 0.8);
-}
-
-.cisco-card {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-
-.cisco-card .credential-body {
-  margin-top: auto;
-  padding-top: 1rem;
 }
 
 .contact-shell {
@@ -770,7 +761,7 @@ section[id] {
 }
 
 .contact-item:hover .contact-action {
-  color: #245b2a;
+  color: var(--deep-magenta);
   text-decoration: underline;
 }
 
