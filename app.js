@@ -7,12 +7,14 @@ createApp({
     return {
       navItems: ['About', 'Skills', 'Projects', 'Credentials'],
       skills: [
-        { icon: 'html', name: 'HTML', description: 'Semantic structure' },
-        { icon: 'css', name: 'CSS', description: 'Responsive interfaces' },
-        { icon: 'javascript', name: 'JavaScript', description: 'Interactive experiences' },
-        { icon: 'bootstrap', name: 'Bootstrap', description: 'Rapid UI development' },
-        { icon: 'git', name: 'Git & GitHub', description: 'Version control' },
-        { icon: 'database', name: 'Databases', description: 'Data fundamentals' }
+        { icon: 'html', name: 'HTML, CSS & Front-End Development', description: 'Build accessible, responsive interfaces' },
+        { icon: 'database', name: 'Database & Back-End Development', description: 'Work with data and server-side logic' },
+        { icon: 'javascript', name: 'E-commerce Development & ICT Fundamentals', description: 'Create digital solutions and technical foundations' },
+        { icon: 'git', name: 'Problem Solving & Technical Troubleshooting', description: 'Diagnose and resolve real issues effectively' },
+        { icon: 'bootstrap', name: 'Communication & Team Collaboration', description: 'Partner well in a team environment' },
+        { icon: 'database', name: 'Time Management & Task Prioritization', description: 'Stay organized and deliver consistently' },
+        { icon: 'html', name: 'Adaptability & Continuous Learning', description: 'Grow with changing technical demands' },
+        { icon: 'git', name: 'Entrepreneurship & Client Management', description: 'Bring business thinking to projects' }
       ],
       projects: [
         {
