@@ -363,7 +363,9 @@ section[id] {
 }
 
 .skills {
-  background: linear-gradient(180deg, #f4b5d8 0%, #e99ad1 100%);
+  background:
+    radial-gradient(ellipse at 92% 6%, rgba(255, 255, 255, 0.38), transparent 30%),
+    linear-gradient(135deg, #f5bbdb 0%, #e99ad1 100%);
   padding: 2.5rem 2rem 2.5rem;
   border-radius: 1.5rem;
   margin-bottom: 1.5rem;
@@ -392,6 +394,8 @@ section[id] {
 }
 
 .skill-card {
+  position: relative;
+  overflow: hidden;
   background: rgba(255,255,255,0.14);
   border-radius: 1.5rem;
   padding: 1.35rem 1.2rem;
@@ -400,6 +404,29 @@ section[id] {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease;
+}
+
+.skill-card::before {
+  position: absolute;
+  top: 0;
+  left: 1.2rem;
+  width: 2.5rem;
+  height: 3px;
+  border-radius: 0 0 999px 999px;
+  background: #5d1d46;
+  content: "";
+  transition: width 0.28s ease;
+}
+
+.skill-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(67, 30, 46, 0.22);
+  box-shadow: 0 18px 34px rgba(72, 24, 58, 0.16);
+}
+
+.skill-card:hover::before {
+  width: calc(100% - 2.4rem);
 }
 
 .skill-index {
@@ -423,6 +450,12 @@ section[id] {
   font-size: 0.8rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
+  transition: transform 0.28s ease, background 0.28s ease;
+}
+
+.skill-card:hover .skill-icon {
+  transform: rotate(-5deg) scale(1.06);
+  background: #5d1d46;
 }
 
 .skill-icon svg {
@@ -492,6 +525,13 @@ section[id] {
   overflow: hidden;
   border-radius: inherit;
   background: #17121b;
+  box-shadow: 0 18px 44px rgba(34, 15, 30, 0.14);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.project-showcase:hover .project-screenshot-frame {
+  transform: translateY(-4px);
+  box-shadow: 0 26px 56px rgba(34, 15, 30, 0.22);
 }
 
 .project-screenshot {
@@ -502,17 +542,11 @@ section[id] {
 
 .slide-fade-enter-active,
 .slide-fade-leave-active {
-  transition: opacity 0.22s ease, transform 0.22s ease;
-}
-
-.slide-fade-enter-from {
-  opacity: 0;
-  transform: translateX(1rem);
+  transition: opacity 0.32s ease;
 }
 
 .slide-fade-leave-to {
   opacity: 0;
-  transform: translateX(-1rem);
 }
 
 .slide-control {
@@ -625,7 +659,9 @@ section[id] {
 }
 
 .purple-panel {
-  background: linear-gradient(135deg, #560f3d 0%, #6d173d 100%);
+  background:
+    radial-gradient(ellipse at 100% 0%, rgba(239, 143, 208, 0.2), transparent 34%),
+    linear-gradient(135deg, #560f3d 0%, #6d173d 100%);
   padding: 3rem 2rem 2rem;
   color: #f4ebef;
   border-radius: 1.5rem;
@@ -648,10 +684,40 @@ section[id] {
 }
 
 .credential-card {
+  position: relative;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   border-radius: 1.5rem;
   padding: 1.5rem;
+  min-height: 330px;
+  box-shadow: 0 8px 18px rgba(27, 13, 25, 0.12);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.credential-card::after {
+  position: absolute;
+  right: -2.5rem;
+  bottom: -3.5rem;
+  width: 8rem;
+  height: 8rem;
+  border: 1px solid rgba(93, 29, 70, 0.12);
+  border-radius: 50%;
+  box-shadow: 0 0 0 1.2rem rgba(93, 29, 70, 0.035), 0 0 0 2.4rem rgba(93, 29, 70, 0.025);
+  content: "";
+  pointer-events: none;
+  transition: transform 0.35s ease;
+}
+
+.credential-card:hover,
+.credential-card:focus-within {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 38px rgba(27, 13, 25, 0.2);
+}
+
+.credential-card:hover::after,
+.credential-card:focus-within::after {
+  transform: scale(1.15);
 }
 
 .light-card {
@@ -701,6 +767,8 @@ section[id] {
 }
 
 .credential-link {
+  position: relative;
+  z-index: 1;
   display: inline-block;
   margin-top: auto;
   padding-top: 1.2rem;
@@ -716,6 +784,70 @@ section[id] {
   text-decoration-thickness: 1px;
   text-underline-offset: 0.2em;
   cursor: pointer;
+  transition: color 0.2s ease, letter-spacing 0.2s ease;
+}
+
+.credential-link:hover,
+.credential-link:focus-visible {
+  color: #8d2865;
+  letter-spacing: 0.16em;
+}
+
+.credential-carousel {
+  position: relative;
+}
+
+.credential-slide-control {
+  position: absolute;
+  z-index: 3;
+  top: 50%;
+  display: grid;
+  width: 2rem;
+  height: 2rem;
+  place-items: center;
+  transform: translateY(-50%);
+  border: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.94);
+  color: #2d182a;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.credential-slide-control:hover {
+  transform: translateY(-50%) scale(1.06);
+  background: var(--pink-soft);
+}
+
+.credential-slide-control svg {
+  width: 1.1rem;
+  height: 1.1rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.credential-previous {
+  left: -2rem;
+}
+
+.credential-next {
+  right: -2rem;
+}
+
+.credential-slide-next-enter-active,
+.credential-slide-previous-enter-active {
+  transition: transform 0.3s ease;
+}
+
+.credential-slide-next-enter-from {
+  transform: translateX(0.75rem);
+}
+
+.credential-slide-previous-enter-from {
+  transform: translateX(-0.75rem);
 }
 
 .contact-shell {
@@ -944,7 +1076,6 @@ textarea {
   .about-grid,
   .section-heading,
   .skills-header,
-  .credential-grid,
   .contact-shell {
     grid-template-columns: 1fr;
   }
@@ -978,6 +1109,10 @@ textarea {
   }
 
   .skill-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .credential-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
@@ -1068,6 +1203,10 @@ textarea {
     min-height: 160px;
   }
 
+  .credential-grid {
+    grid-template-columns: 1fr;
+  }
+
   .projects-header {
     align-items: flex-start;
     flex-direction: column;
@@ -1080,6 +1219,14 @@ textarea {
 
   .credential-card {
     padding: 1.25rem;
+  }
+
+  .credential-previous {
+    left: -1rem;
+  }
+
+  .credential-next {
+    right: -1rem;
   }
 
   .slide-previous {
